@@ -37,7 +37,6 @@
   <ItemGroup>
     <Compile Include="Dataset.cs" />
     <Compile Include="DatasetReader.cs" />
-    <Compile Include="Extensions\BitArrayExtensions.cs" />
     <Compile Include="Extensions\IntegerBitExtensions.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
