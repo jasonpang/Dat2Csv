@@ -104,7 +104,26 @@ namespace Dat2Csv.Extensions
         public static short PopulateBits(this short number, byte source, int sourceBit, int destinationBit, int count)
         {
             if (sourceBit < 0 || destinationBit < 0 || count < 0 ||
-                sourceBit >= sizeof(byte) * 8 || destinationBit >= sizeof(byte) * 8 || count > sizeof(byte) * 8)
+                sourceBit >= sizeof(byte) * 8 || destinationBit >= sizeof(short) * 8 || count > sizeof(byte) * 8)
+                throw new ArgumentOutOfRangeException("Check sourceBit, destinationBit, and count to not exceed [0 .. 8]");
+            for (int i = sourceBit; i < sourceBit + count; i++)
+                number = number.SetBit(i - sourceBit + destinationBit, source.GetBit(i));
+            return number;
+        }
+
+        /// <summary>
+        /// Returns a ushort with a subset of its bits populated from a subset of a byte's bits.
+        /// </summary>
+        /// <param name="number">The number's bits to modify.</param>
+        /// <param name="source">The source containing the bits we want to copy over.</param>
+        /// <param name="sourceBit">The bit position in the source to begin copying over. 0 represents the LSB.</param>
+        /// <param name="destinationBit">The bit position in the number to copy to. 0 represents the number's LSB.</param>
+        /// <param name="count">The number of bits to copy from the source and to the destination.</param>
+        /// <returns></returns>
+        public static ushort PopulateBits(this ushort number, byte source, int sourceBit, int destinationBit, int count)
+        {
+            if (sourceBit < 0 || destinationBit < 0 || count < 0 ||
+                sourceBit >= sizeof(byte) * 8 || destinationBit >= sizeof(ushort) * 8 || count > sizeof(byte) * 8)
                 throw new ArgumentOutOfRangeException("Check sourceBit, destinationBit, and count to not exceed [0 .. 8]");
             for (int i = sourceBit; i < sourceBit + count; i++)
                 number = number.SetBit(i - sourceBit + destinationBit, source.GetBit(i));

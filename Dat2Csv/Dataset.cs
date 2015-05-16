@@ -12,15 +12,15 @@ namespace Dat2Csv
     public class Dataset
     {
         public ushort SequenceNumber { get; set; }
-        public ushort[] X { get; set; }
-        public ushort[] Y { get; set; }
-        public ushort[] Z { get; set; }
+        public short[] X { get; set; }
+        public short[] Y { get; set; }
+        public short[] Z { get; set; }
 
         public Dataset()
         {
-            X = new ushort[4];
-            Y = new ushort[4];
-            Z = new ushort[4];
+            X = new short[4];
+            Y = new short[4];
+            Z = new short[4];
         }
     }
 }

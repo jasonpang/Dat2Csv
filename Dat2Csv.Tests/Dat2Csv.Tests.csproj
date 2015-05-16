@@ -52,6 +52,7 @@
     <Compile Include="Extensions\BitArrayExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IntegerBitExtensionTests.cs" />
+    <Compile Include="DatasetReaderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dat2Csv\Dat2Csv.csproj">
