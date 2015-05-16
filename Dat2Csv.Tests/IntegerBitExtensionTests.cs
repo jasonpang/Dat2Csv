@@ -1,6 +1,7 @@
 ﻿using System;
 using Dat2Csv.Extensions;
 using NUnit.Framework;
+using Dat2Csv.Tests.Extensions;
 
 namespace Dat2Csv.Tests
 {
@@ -79,6 +80,7 @@ namespace Dat2Csv.Tests
         public void TestSignExtend()
         {
             Assert.AreEqual(short.MinValue.SignExtend(), short.MinValue);
+            Assert.AreEqual(short.MinValue.SignExtend().SignExtend(), short.MinValue);
 
             short v0 = 0;
             short v0SE = v0.SignExtend();
@@ -87,16 +89,8 @@ namespace Dat2Csv.Tests
 
             short v50 = 50;
             short v50SE = v50.SignExtend();
-            Assert.AreEqual(v50SE, (short)(v50 * -1));
-            Assert.AreEqual(v50SE.SignExtend(), (short)(v50 * -1));
-
-            short vn21846 = -21846;
-            short vn21846SE = vn21846.SignExtend();
-            Assert.AreEqual(vn21846, vn21846SE);
-            Assert.AreEqual(vn21846.SignExtend(), vn21846SE);
-
-            Assert.AreEqual(short.MaxValue.SignExtend(), short.MinValue);
-            Assert.AreEqual(short.MaxValue.SignExtend().SignExtend(), short.MinValue);
+            Assert.AreEqual(v50SE, (short)-14);
+            Assert.AreEqual(v50SE.SignExtend(), (short)-14);
         }
     }
 }

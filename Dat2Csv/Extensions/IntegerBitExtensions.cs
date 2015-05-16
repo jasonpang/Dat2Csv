@@ -128,9 +128,8 @@ namespace Dat2Csv.Extensions
                 if (number.GetBit(i))
                 {
                     for (int j = i; j < sizeof(short) * 8; j++)
-                    {
                         number = number.SetBit(j, true);
-                    }
+                    break;
                 }
             }
             return number;
