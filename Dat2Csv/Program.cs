@@ -22,6 +22,7 @@ namespace Dat2Csv
 
             bool firstRead = true;
             ushort lastSequenceNumber = 0;
+            int outputCount = 0;
 
             try
             {
@@ -43,7 +44,8 @@ namespace Dat2Csv
                             }
                             else
                             {
-                                if (lastSequenceNumber + 1 != dataset.SequenceNumber)
+                                if ((lastSequenceNumber == ushort.MaxValue && dataset.SequenceNumber != ushort.MinValue) ||
+                                   lastSequenceNumber + 1 != dataset.SequenceNumber)
                                 {
                                     Console.WriteLine(String.Format("Failed: Last sequence number was {0} but current sequence number is {1}.", lastSequenceNumber, dataset.SequenceNumber));
                                     Console.WriteLine("Exiting...");
@@ -52,7 +54,10 @@ namespace Dat2Csv
                                 lastSequenceNumber = dataset.SequenceNumber;
                             }
                             for (int i = 0; i < dataset.X.Length; i++)
+                            {
                                 writer.WriteLine(String.Format("{0},{1},{2}", dataset.X[i], dataset.Y[i], dataset.Z[i]));
+                                outputCount++;
+                            }
                         }
                     }
                 }
@@ -62,6 +67,7 @@ namespace Dat2Csv
                 Console.WriteLine(String.Format("Error: {0}", e.ToString()));
             }
 
+            Console.WriteLine(String.Format("{0} rows found, data integrity check passsed", outputCount));
             Console.WriteLine("Program finished!");
         }
     }
